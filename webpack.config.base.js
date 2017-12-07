@@ -1,14 +1,21 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 const baseWebpackConfig = {
     entry : {
-        //vendor : [],
-        bundle : './src/index.js'
+        bundle : [
+            './src/index.js'
+        ],
+        vendor : [
+            './src/assets/js/vendor/test1.js',
+            './src/assets/js/vendor/test2.js'
+        ]
     },
     output : {
         path : path.resolve(__dirname, './dist'),
+        publicPath : '/',
         filename : 'assets/js/[name].js'
     },
     resolve : {
@@ -20,7 +27,7 @@ const baseWebpackConfig = {
                 test : /\.scss$/,
                 loaders : ExtractTextPlugin.extract({
                     fallback : 'style-loader',
-                    use : ['css-loader', 'sass-loader?outputStyle=expanded']
+                    use : ['css-loader', 'sass-loader?outputStyle=compressed']
                 })
             },
             {
@@ -36,7 +43,16 @@ const baseWebpackConfig = {
                 }
             }
         ]
-    }
+    },
+    plugins : [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
+        }),
+
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest'
+        })
+    ]
 };
 
 module.exports = baseWebpackConfig;

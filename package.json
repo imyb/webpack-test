@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --config webpack.config.dev.js",
-    "start": "webpack-dev-server --inline --progress --hot --config webpack.config.dev.js"
+    "start": "webpack-dev-server --inline --progress --hot --config webpack.config.dev.js",
+    "prod": "webpack --config webpack.config.prod.js"
   },
   "keywords": [],
   "author": "",
@@ -25,5 +26,8 @@
     "webpack": "^3.9.1",
     "webpack-dev-server": "^2.9.5",
     "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {
+    "react": "^16.2.0"
   }
 }

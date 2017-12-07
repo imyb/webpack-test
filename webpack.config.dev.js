@@ -15,7 +15,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
             template: './src/index.html',
             filename: 'index.html',
             inject: true
-        }),
+        })
 
     ],
     devServer : {
